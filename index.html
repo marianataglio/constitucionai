@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> ConstitucionaI</title>
+    <title>ConstitucionaI</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -70,11 +70,10 @@
                     }
                 }
             };
-            xhr.open("POST", "/api/query", true);
+            xhr.open("POST", "https://constitucionai-constitutionai-ff7d3ccb.koyeb.app/query", true);
             xhr.setRequestHeader("Content-Type", "application/json");
-            xhr.send(JSON.stringify({input: question}));
+            xhr.send(JSON.stringify({ query: question }));
         }
     </script>
 </body>
 </html>
-
