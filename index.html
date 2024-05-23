@@ -97,11 +97,11 @@
     <div class="container-fluid">
         <div id="seccion-superior" class="text-center">
             <h1>ConstitucionAI</h1>
-            <form class="d-flex flex-column flex-md-row align-items-center w-100">
+            <form class="d-flex flex-column flex-md-row align-items-center w-100" onsubmit="return false;">
                 <input type="text" id="barra-busqueda" class="form-control mb-2 mb-md-0 mr-md-2" placeholder="Introduce tu query aquí">
                 <button id="boton-busqueda" class="btn btn-primary" type="button">Buscar</button>
             </form>
-            <form id="login-form" class="w-100">
+            <form id="login-form" class="w-100" onsubmit="return false;">
                 <input type="password" id="password" class="form-control" placeholder="Password" required>
                 <button id="login-button" class="btn btn-primary mt-2" type="button">Login</button>
                 <p id="login-message"></p>
@@ -119,6 +119,20 @@
             // Initially hide the search bar and the search button
             $("#barra-busqueda").hide();
             $("#boton-busqueda").hide();
+
+            // Handle Enter key for search input
+            $("#barra-busqueda").keypress(function(event) {
+                if (event.which == 13) {
+                    $("#boton-busqueda").click();
+                }
+            });
+
+            // Handle Enter key for login input
+            $("#password").keypress(function(event) {
+                if (event.which == 13) {
+                    $("#login-button").click();
+                }
+            });
 
             $("#boton-busqueda").click(function() {
                 var query = $("#barra-busqueda").val();
