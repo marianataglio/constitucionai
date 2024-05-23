@@ -96,7 +96,7 @@
             </form>
         </div>
         <div id="seccion-inferior">
-            <img id="loading" src="giphy.gif" alt="Loading..." width="50" height="50">
+            <img id="loading" src="loading.gif" alt="Loading..." width="50" height="50">
             <div id="respuesta"></div>
         </div>
     </div>
@@ -106,6 +106,7 @@
         $(document).ready(function() {
             // Initially hide the search bar
             $("#barra-busqueda").hide();
+            $("#boton-busqueda").hide();
 
             $("#boton-busqueda").click(function() {
                 var query = $("#barra-busqueda").val();
@@ -145,6 +146,7 @@
                         // Hide the login form and show the search form after successful login
                         $("#login-form").hide();
                         $("#barra-busqueda").show();
+                        $("#boton-busqueda").show();
                     },
                     error: function(xhr) {
                         var errorResponse = xhr.responseJSON;
