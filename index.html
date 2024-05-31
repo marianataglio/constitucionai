@@ -124,12 +124,34 @@
                 max-width: 90%;
             }
         }
+
+        .hidden {
+            display: none;
+        }
+
+        .inspect-toggle-wrapper {
+            justify-content: flex-end; /* Aligns to right edge */
+            margin: 10px 15px 20px 0; /* Adjust top, right, bottom, left margins */
+        }
+        .form-check-label {
+            color: white; /* Label text color */
+        }
+
+        .toggle-and-search-spacing {
+            margin-bottom: 300px; /* Adjust this value to increase or decrease the space */
+        }
     </style>
 </head>
 <body>
     <div class="container-fluid">
         <div id="seccion-superior" class="text-center">
             <h1>ConstitucionAI</h1>
+            <div class="inspect-toggle-wrapper hidden">
+                <div class="form-check form-switch">
+                    <label class="form-check-label text-wrap" for="inspect-toggle">Inspect</label>
+                    <input class="form-check-input" type="checkbox" id="inspect-toggle"> 
+                </div>
+            </div>
             <form id="search-form" class="d-flex flex-column flex-md-row align-items-center w-100" onsubmit="return false;">
                 <div class="input-group w-100">
                     <div class="input-group-prepend">
@@ -208,8 +230,20 @@
                     contentType: 'application/json',
                     data: JSON.stringify({ query: query }),
                     success: function(response) {
-                        // Display the response in the HTML page
-                        $("#respuesta").html("<p class='bold-text'>Respuesta:</p><p>" + response.answer + "</p>");
+                        // Display the response in the HTML page based on the toggle state
+                        if ($("#inspect-toggle").is(":checked")) {
+                            contentToDisplay = "<p class='bold-text'>Respuesta:</p><p>" + response.answer + "</p>";
+                            contentToDisplay += "<p class='bold-text'>Contexto:</p>";
+                            response.context.forEach(function(doc) {
+                                contentToDisplay += "<p>" + doc.page_content + "</p>";
+                        });
+                    } else {
+                            contentToDisplay = "<p class='bold-text'>Respuesta:</p><p>" + response.answer + "</p>";
+                    }
+
+                    $("#respuesta").html(contentToDisplay);
+
+
                         $("#respuesta").show();
                         $("#loading").hide();
                     },
@@ -234,6 +268,7 @@
                         // Hide the login form and show the search form after successful login
                         $("#login-form").hide();
                         $(".input-group").show();
+                        $(".inspect-toggle-wrapper").removeClass("hidden");
                     },
                     error: function(xhr) {
                         var errorResponse = xhr.responseJSON;
