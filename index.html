@@ -172,6 +172,8 @@
             </form>
             <form id="login-form" class="w-100" onsubmit="return false;">
                 <input type="password" id="password" class="form-control" placeholder="Password" required>
+                <input type="text" id="google-api-key" class="form-control" placeholder="Google API Key (optional)">
+
                 <button id="login-button" class="btn btn-primary mt-2" type="button">Login</button>
                 <p id="login-message"></p>
             </form>
@@ -257,6 +259,13 @@
 
             $("#login-button").click(function() {
                 var password = $("#password").val();
+                var googleApiKey = $("#google-api-key").val(); // Added Google API Key retrieval
+
+                var postData = {
+                    password: password,
+                    google_api_key: googleApiKey // Include google_api_key in the request
+                };
+
 
                 $.ajax({
                     url: 'https://constitucionai-constitutionai-ff7d3ccb.koyeb.app/login',
