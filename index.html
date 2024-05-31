@@ -172,7 +172,7 @@
             </form>
             <form id="login-form" class="w-100" onsubmit="return false;">
                 <input type="password" id="password" class="form-control" placeholder="Password" required>
-                <input type="text" id="google-api-key" class="form-control" placeholder="Google API Key (optional)">
+                <input type="text" id="google_api_key" class="form-control" placeholder="Google API Key (optional)">
 
                 <button id="login-button" class="btn btn-primary mt-2" type="button">Login</button>
                 <p id="login-message"></p>
@@ -227,7 +227,7 @@
                 $("#loading").show();
 
                 $.ajax({
-                    url: 'https://constitucionai-constitutionai-ff7d3ccb.koyeb.app' + selectedEndpoint,
+                    url: 'http://127.0.0.1:5000' + selectedEndpoint,
                     type: 'POST',
                     contentType: 'application/json',
                     data: JSON.stringify({ query: query }),
@@ -259,7 +259,7 @@
 
             $("#login-button").click(function() {
                 var password = $("#password").val();
-                var googleApiKey = $("#google-api-key").val(); // Added Google API Key retrieval
+                var googleApiKey = $("#google_api_key").val(); // Added Google API Key retrieval
 
                 var postData = {
                     password: password,
@@ -268,7 +268,7 @@
 
 
                 $.ajax({
-                    url: 'https://constitucionai-constitutionai-ff7d3ccb.koyeb.app/login',
+                    url: 'http://127.0.0.1:5000/login',
                     type: 'POST',
                     contentType: 'application/json',
                     data: JSON.stringify({ password: password }),
