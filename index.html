@@ -227,7 +227,7 @@
                 $("#loading").show();
 
                 $.ajax({
-                    url: 'http://127.0.0.1:5000' + selectedEndpoint,
+                    url: 'https://constitucionai-constitutionai-ff7d3ccb.koyeb.app' + selectedEndpoint,
                     type: 'POST',
                     contentType: 'application/json',
                     data: JSON.stringify({ query: query }),
@@ -268,7 +268,7 @@
 
 
                 $.ajax({
-                    url: 'http://127.0.0.1:5000/login',
+                    url: 'https://constitucionai-constitutionai-ff7d3ccb.koyeb.app/login',
                     type: 'POST',
                     contentType: 'application/json',
                     data: JSON.stringify({ password: password }),
